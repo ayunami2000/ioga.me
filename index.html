@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ioga.me</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<style>
+*{padding:0;margin:0;}
+body{background-color:black;}
+canvas{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background-color:gray;}
+</style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+function Game(c,im){
+if(typeof window.t!="undefined")return;
+window.t=this;
+window.onresize=()=>{
+t.c.width=window.innerWidth;
+t.c.height=window.innerHeight;
+t.mindim=Math.min(t.c.width,t.c.height);
+};
+t.mpos=[0,0];
+t.scale=25;
+t.plyr={spd:5,col:0,skin:im};
+window.onmousemove=e=>t.mpos=[e.clientX,e.clientY];
+window.onmousedown=e=>{if(e.button==0)t.plyr.spd=10;};
+window.onmouseup=e=>{if(e.button==0)t.plyr.spd=5;};
+t.c=c;
+t.ctx=t.c.getContext('2d');
+window.onresize();
+t.map={width:500,height:500};
+Object.assign(t.map,{toPixX:n=>t.c.width*n/t.map.width,toPixY:n=>t.c.height*n/t.map.height,fromPixX:n=>t.map.width*n/t.c.width,fromPixY:n=>t.map.height*n/t.c.height});
+t.pos={x:0,y:0};
+t.draw=()=>{
+t.ctx.clearRect(0,0,t.c.width,t.c.height);
+
+//update player pos
+t.pos.x+=t.plyr.spd*((t.mpos[0]/t.c.width)-.5);
+t.pos.x=Math.min(t.map.width,Math.max(0,t.pos.x));
+t.pos.y+=t.plyr.spd*((t.mpos[1]/t.c.height)-.5);
+t.pos.y=Math.min(t.map.height,Math.max(0,t.pos.y));
+console.log(t.pos.x,t.pos.y);
+
+//draw grid
+var gxo=(t.mindim*((t.scale*t.c.width/t.mindim)-Math.round(t.scale*t.c.width/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.x/t.mindim)-Math.floor(t.scale*t.pos.x/t.mindim))/t.scale),gyo=(t.mindim*((t.scale*t.c.height/t.mindim)-Math.round(t.scale*t.c.height/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.y/t.mindim)-Math.floor(t.scale*t.pos.y/t.mindim))/t.scale);
+for(var gx=-1;gx<=t.scale*t.c.width/t.mindim;gx++){
+t.ctx.beginPath();
+t.ctx.moveTo(((gx+1)*t.mindim/t.scale)+gxo,0);
+t.ctx.lineTo(((gx+1)*t.mindim/t.scale)+gxo,t.c.height);
+t.ctx.stroke();
+}
+for(var gy=-1;gy<=t.scale*t.c.height/t.mindim;gy++){
+t.ctx.beginPath();
+t.ctx.moveTo(0,((gy+1)*t.mindim/t.scale)+gyo);
+t.ctx.lineTo(t.c.width,((gy+1)*t.mindim/t.scale)+gyo);
+t.ctx.stroke();
+}
+
+//draw player
+t.ctx.setTransform(1,0,0,1,t.c.width/2,t.c.height/2);
+t.ctx.rotate(Math.atan2(t.mpos[1]-(t.c.height/2),t.mpos[0]-(t.c.width/2)));
+var pssz=2*t.mindim/t.scale;
+t.ctx.drawImage(t.plyr.skin,-3*pssz/2,-pssz/2,3*pssz,pssz);
+t.ctx.setTransform(1,0,0,1,0,0);
+
+setTimeout(t.draw,50/3);
+};
+t.draw();
+};
+window.onload=()=>{
+var im=document.createElement('IMG');
+im.onload=()=>new Game(document.querySelector('canvas'),im);
+im.src="https://d30y9cdsu7xlg0.cloudfront.net/png/35-200.png";
+};
+</script>
+</body>
+</html>
