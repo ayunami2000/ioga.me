@@ -45,6 +45,7 @@ console.log(t.pos.x,t.pos.y);
 
 //draw grid
 var gxo=(t.mindim*((t.scale*t.c.width/t.mindim)-Math.round(t.scale*t.c.width/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.x/t.mindim)-Math.floor(t.scale*t.pos.x/t.mindim))/t.scale),gyo=(t.mindim*((t.scale*t.c.height/t.mindim)-Math.round(t.scale*t.c.height/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.y/t.mindim)-Math.floor(t.scale*t.pos.y/t.mindim))/t.scale);
+  console.log(gxo,gyo);
 for(var gx=-1;gx<=t.scale*t.c.width/t.mindim;gx++){
 t.ctx.beginPath();
 t.ctx.moveTo(((gx+1)*t.mindim/t.scale)+gxo,0);
