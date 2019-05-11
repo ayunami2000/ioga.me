@@ -44,8 +44,7 @@ t.pos.y=Math.min(t.map.height,Math.max(0,t.pos.y));
 console.log(t.pos.x,t.pos.y);
 
 //draw grid
-//var gxo=(t.mindim*((t.scale*t.c.width/t.mindim)-Math.round(t.scale*t.c.width/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.x/t.mindim)-Math.floor(t.scale*t.pos.x/t.mindim))/t.scale),gyo=(t.mindim*((t.scale*t.c.height/t.mindim)-Math.round(t.scale*t.c.height/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.y/t.mindim)-Math.floor(t.scale*t.pos.y/t.mindim))/t.scale);
-var gxo=(t.mindim*((t.scale*t.c.width/t.mindim)-Math.round(t.scale*t.c.width/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.x/t.mindim)-Math.floor(t.scale*t.pos.x/t.mindim))),gyo=(t.mindim*((t.scale*t.c.height/t.mindim)-Math.round(t.scale*t.c.height/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.y/t.mindim)-Math.floor(t.scale*t.pos.y/t.mindim)));
+var gxo=(t.mindim*((t.scale*t.c.width/t.mindim)-Math.round(t.scale*t.c.width/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.x/t.mindim)-Math.floor(t.scale*t.pos.x/t.mindim))/t.scale),gyo=(t.mindim*((t.scale*t.c.height/t.mindim)-Math.round(t.scale*t.c.height/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.y/t.mindim)-Math.floor(t.scale*t.pos.y/t.mindim))/t.scale);
 for(var gx=-1;gx<=t.scale*t.c.width/t.mindim;gx++){
 t.ctx.beginPath();
 t.ctx.moveTo(((gx+1)*t.mindim/t.scale)+gxo,0);
@@ -73,7 +72,7 @@ if((gy==Math.floor(t.scale/2)&&t.pos.y<5)||(gy==((Math.floor(t.scale*t.c.height/
   t.ctx.stroke();
 }
 t.ctx.strokeStyle="red";
-t.ctx.strokeRect(-t.pos.x+t.c.width/2,-t.pos.y+t.c.height/2,t.c.width*(t.map.width/t.scale)-t.c.width/2,t.c.height*(t.map.height/t.scale)-t.c.height/2);
+t.ctx.strokeRect(-(t.mindim*t.pos.x/t.scale)+t.c.width/2,-(t.mindim*t.pos.y/t.scale)+t.c.height/2,t.c.width*(t.map.width/t.scale)-t.c.width/2,t.c.height*(t.map.height/t.scale)-t.c.height/2);
 t.ctx.strokeStyle="black";
 
 //draw player
