@@ -72,7 +72,7 @@ if((gy==Math.floor(t.scale/2)&&t.pos.y<5)||(gy==((Math.floor(t.scale*t.c.height/
   t.ctx.stroke();
 }
 t.ctx.strokeStyle="red";
-t.ctx.strokeRect(t.pos.x+t.c.width/2,t.pos.y+t.c.height/2,t.c.width*(t.map.width/t.scale)-t.c.width/2,t.c.height*(t.map.height/t.scale)-t.c.height/2);
+t.ctx.strokeRect(-t.pos.x+t.c.width/2,-t.pos.y+t.c.height/2,t.c.width*(t.map.width/t.scale)-t.c.width/2,t.c.height*(t.map.height/t.scale)-t.c.height/2);
 t.ctx.strokeStyle="black";
 
 //draw player
