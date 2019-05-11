@@ -49,7 +49,7 @@ for(var gx=-1;gx<=t.scale*t.c.width/t.mindim;gx++){
 t.ctx.beginPath();
 t.ctx.moveTo(((gx+1)*t.mindim/t.scale)+gxo,0);
 t.ctx.lineTo(((gx+1)*t.mindim/t.scale)+gxo,t.c.height);
-if((gx==t.scale/2&&t.pos.x<5)||(gx==((Math.floor(t.scale*t.c.width/t.mindim)-1)-t.scale/2)&&t.pos.x>t.map.width-5)){
+if((gx==Math.floor(t.scale/2)&&t.pos.x<5)||(gx==((Math.floor(t.scale*t.c.width/t.mindim)-1)-Math.floor(t.scale/2))&&t.pos.x>t.map.width-5)){
   t.ctx.strokeStyle="red";
   t.ctx.stroke();
   t.ctx.strokeStyle="black";
@@ -59,7 +59,7 @@ for(var gy=-1;gy<=t.scale*t.c.height/t.mindim;gy++){
 t.ctx.beginPath();
 t.ctx.moveTo(0,((gy+1)*t.mindim/t.scale)+gyo);
 t.ctx.lineTo(t.c.width,((gy+1)*t.mindim/t.scale)+gyo);
-if((gy==t.scale/2&&t.pos.y<5)||(gy==((Math.floor(t.scale*t.c.height/t.mindim)-1)-t.scale/2)&&t.pos.y>t.map.height-5)){
+if((gy==Math.floor(t.scale/2)&&t.pos.y<5)||(gy==((Math.floor(t.scale*t.c.height/t.mindim)-1)-Math.floor(t.scale/2))&&t.pos.y>t.map.height-5)){
   t.ctx.strokeStyle="red";
   t.ctx.stroke();
   t.ctx.strokeStyle="black";
