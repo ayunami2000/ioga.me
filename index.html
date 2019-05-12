@@ -45,6 +45,9 @@ console.log(t.pos.x,t.pos.y);
 
 //draw grid
 var gxo=(t.mindim*((t.scale*t.c.width/t.mindim)-Math.round(t.scale*t.c.width/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.x/t.mindim)-Math.floor(t.scale*t.pos.x/t.mindim))/t.scale),gyo=(t.mindim*((t.scale*t.c.height/t.mindim)-Math.round(t.scale*t.c.height/t.mindim))/(t.scale*2))-(t.mindim*((t.scale*t.pos.y/t.mindim)-Math.floor(t.scale*t.pos.y/t.mindim))/t.scale);
+  var proportion=t.mindim/t.scale;
+  gxo=(proportion*gxo)+(Math.abs(gxo)>t.mindim/proportion?(gxo>t.mindim/proportion?(-2*t.mindim/proportion):(2*t.mindim/proportion)):0);
+  gyo=(proportion*gyo)+(Math.abs(gyo)>t.mindim/proportion?(gyo>t.mindim/proportion?(-2*t.mindim/proportion):(2*t.mindim/proportion)):0);
   console.log(gxo,gyo);
 for(var gx=-1;gx<=t.scale*t.c.width/t.mindim;gx++){
 t.ctx.beginPath();
