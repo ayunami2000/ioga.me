@@ -6,7 +6,7 @@
 <style>
 *{padding:0;margin:0;}
 body{background-color:black;}
-canvas{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background-color:gray;}
+canvas{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background-color:gray;transform:scale(2,2);}
 </style>
 </head>
 <body>
@@ -50,27 +50,21 @@ for(var gx=-1;gx<=t.scale*t.c.width/t.mindim;gx++){
 t.ctx.beginPath();
 t.ctx.moveTo(((gx+1)*t.mindim/t.scale)+gxo,0);
 t.ctx.lineTo(((gx+1)*t.mindim/t.scale)+gxo,t.c.height);
-  /*
-if((gx==Math.floor(t.scale/2)&&t.pos.x<5)||(gx==((Math.floor(t.scale*t.c.width/t.mindim)-1)-Math.floor(t.scale/2))&&t.pos.x>t.map.width-5)){
-  t.ctx.strokeStyle="red";
-  t.ctx.stroke();
-  t.ctx.strokeStyle="black";
-}else{t.ctx.stroke();}
-*/
-  t.ctx.stroke();
+t.ctx.stroke();
+t.ctx.beginPath();
+t.ctx.moveTo(((gx+1.5)*t.mindim/t.scale)+gxo,0);
+t.ctx.lineTo(((gx+1.5)*t.mindim/t.scale)+gxo,t.c.height);
+t.ctx.stroke();
 }
 for(var gy=-1;gy<=t.scale*t.c.height/t.mindim;gy++){
 t.ctx.beginPath();
 t.ctx.moveTo(0,((gy+1)*t.mindim/t.scale)+gyo);
 t.ctx.lineTo(t.c.width,((gy+1)*t.mindim/t.scale)+gyo);
-  /*
-if((gy==Math.floor(t.scale/2)&&t.pos.y<5)||(gy==((Math.floor(t.scale*t.c.height/t.mindim)-1)-Math.floor(t.scale/2))&&t.pos.y>t.map.height-5)){
-  t.ctx.strokeStyle="red";
-  t.ctx.stroke();
-  t.ctx.strokeStyle="black";
-}else{t.ctx.stroke();}
-*/
-  t.ctx.stroke();
+t.ctx.stroke();
+t.ctx.beginPath();
+t.ctx.moveTo(0,((gy+1.5)*t.mindim/t.scale)+gyo);
+t.ctx.lineTo(t.c.width,((gy+1.5)*t.mindim/t.scale)+gyo);
+t.ctx.stroke();
 }
 t.ctx.strokeStyle="red";
 //t.ctx.strokeRect(-(t.mindim*t.pos.x/t.scale)+t.c.width/2,-(t.mindim*t.pos.y/t.scale)+t.c.height/2,t.mindim*(t.map.width/t.scale),t.mindim*(t.map.height/t.scale));
